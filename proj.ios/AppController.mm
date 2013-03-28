@@ -44,12 +44,12 @@ static AppDelegate s_sharedApplication;
     // Add the view controller's view to the window and display.
     window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
     EAGLView *__glView = [EAGLView viewWithFrame: [window bounds]
-                                     pixelFormat: kEAGLColorFormatRGBA8
-                                     depthFormat: GL_DEPTH_COMPONENT16
-                              preserveBackbuffer: NO
-                                      sharegroup: nil
-                                   multiSampling: NO
-                                 numberOfSamples: 0 ];
+                                        pixelFormat: kEAGLColorFormatRGBA8
+                                        depthFormat: GL_DEPTH_COMPONENT16
+                                 preserveBackbuffer: NO
+                                                                                 sharegroup:nil
+                                                                          multiSampling:NO
+                                                                    numberOfSamples:0];
     
     // Use RootViewController manage EAGLView 
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
