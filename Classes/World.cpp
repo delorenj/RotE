@@ -10,17 +10,24 @@
 
 World::World() {
     this->setTouchEnabled(true);
-    pMap = new CCTMXTiledMap();
-    pMap->initWithTMXFile(TMX_FILE);
+    pMap = CCTMXTiledMap::create(TMX_FILE);
     addChild(pMap, 1);
 
+	pViewport = CCNode::create();
+	pViewport->setPosition(500,200);
+	pMap->addChild(pViewport, 1);
+
+	worldBoundary = CCRectMake(	0,
+								0,
+								pMap->getTileSize().width*getWorldSize().width, 
+								pMap->getTileSize().height*getWorldSize().height);
+
+	scrollAction = CCFollow::create(pViewport, worldBoundary);
+	runAction(scrollAction);	
 }
 
 World::~World() {
     removeChild(pMap);
-    if(pMap) {
-        delete pMap;
-    }
 }
 
 CCPoint World::touchToPoint(CCTouch* touch)
@@ -34,12 +41,13 @@ CCSize World::getWorldSize() {
 }
 
 void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
-    this->touchOffset = CCPointZero;
 
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch) {
-            this->touchOffset = ccpSub(pMap->getPosition(),touchToPoint(touch));
+			CCMoveTo* move = CCMoveTo::create(1.0f, touchToPoint(touch));
+			CCEaseOut* ease = CCEaseOut::create(move, 2);
+			pViewport->runAction(ease);
         }
     }
 }
@@ -48,12 +56,10 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch && touchOffset.x && touchOffset.y) {
-			pMap->setPosition(ccpAdd(this->touchToPoint(touch), this->touchOffset));
-            
         }
     }
 }
 
 void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
-    CCLOG("Nope!");
+	CCLOG("Viewport Position: (%f, %f)", pViewport->getPositionX(), pViewport->getPositionY());
 }

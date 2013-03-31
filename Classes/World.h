@@ -11,7 +11,7 @@
 
 #include <cocos2d.h>
 
-#define TMX_FILE "isometric_grass_and_water.tmx"
+#define TMX_FILE "../Resources/isometric_grass_and_water.tmx"
 
 using namespace cocos2d;
 
@@ -29,7 +29,9 @@ public:
 protected:
     CCTMXTiledMap* pMap;
     CCPoint touchOffset;
-    
+    CCNode* pViewport;
+	CCFollow* scrollAction;
+	CCRect worldBoundary;
     
 };
 #endif /* defined(__RotE__World__) */

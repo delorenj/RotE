@@ -14,6 +14,7 @@
     <ProjectGuid>{B8BF9E81-35FD-4582-BA1C-B85FA365BABB}</ProjectGuid>
     <RootNamespace>HelloCppwin32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>RotE</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -58,6 +59,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\cocos2dx\include;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\cocos2dx;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\cocos2dx\kazmath\include;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\cocos2dx\platform;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\cocos2dx\platform\third_party\win32\OGLES;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\cocos2dx\platform\win32;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\cocos2dx\platform\third_party\win32;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\external;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\external\Box2D;C:\Users\Jarad\cocos2d-2.1rc0-x-2.1.2\CocosDenshion\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
@@ -69,7 +71,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -121,23 +123,34 @@
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\IsoPrototype.cpp" />
+    <ClCompile Include="..\Classes\World.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\AppMacros.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\IsoPrototype.h" />
+    <ClInclude Include="..\Classes\World.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\cocos2dx\proj.win32\cocos2d.vcxproj">
+    <ProjectReference Include="..\..\..\..\cocos2d-2.1rc0-x-2.1.2\cocos2dx\proj.win32\cocos2d.vcxproj">
       <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\CocosDenshion\proj.win32\CocosDenshion.vcxproj">
+    <ProjectReference Include="..\..\..\..\cocos2d-2.1rc0-x-2.1.2\CocosDenshion\proj.win32\CocosDenshion.vcxproj">
       <Project>{f8edd7fa-9a51-4e80-baeb-860825d2eac6}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\cocos2d-2.1rc0-x-2.1.2\external\Box2D\proj.win32\Box2D.vcxproj">
+      <Project>{929480e7-23c0-4df6-8456-096d71547116}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\isometric_grass_and_water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\isometric_grass_and_water.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
