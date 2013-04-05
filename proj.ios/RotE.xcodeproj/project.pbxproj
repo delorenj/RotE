@@ -13,13 +13,13 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		4E89EC59170F732D0067B544 /* isometric_grass_and_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E89EC57170F732D0067B544 /* isometric_grass_and_water.png */; };
+		4E89EC5A170F732D0067B544 /* isometric_grass_and_water.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 4E89EC58170F732D0067B544 /* isometric_grass_and_water.tmx */; };
 		4ECAE9A1170509EE00AB8786 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ECAE9A01705076600AB8786 /* libcocos2dx.a */; };
 		4ECAE9A817050A5100AB8786 /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ECAE9A717050A2500AB8786 /* libCocosDenshion.a */; };
 		4ECAEA6717050C2100AB8786 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF365AA712A103F70050DCF4 /* AppController.mm */; };
 		4ECAEA6917050CC600AB8786 /* libbox2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ECAEA6817050CC600AB8786 /* libbox2d.a */; };
 		4ECAEA6C17050E6900AB8786 /* IsoPrototype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAEA6A17050E6900AB8786 /* IsoPrototype.cpp */; };
-		4ECAEA771706407F00AB8786 /* isometric_grass_and_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAEA751706407F00AB8786 /* isometric_grass_and_water.png */; };
-		4ECAEA781706407F00AB8786 /* isometric_grass_and_water.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAEA761706407F00AB8786 /* isometric_grass_and_water.tmx */; };
 		4ECAEA7B17064E8600AB8786 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAEA7917064E8600AB8786 /* World.cpp */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
@@ -64,13 +64,13 @@
 		1D6058910D05DD3D006BFB54 /* RotE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4E89EC57170F732D0067B544 /* isometric_grass_and_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isometric_grass_and_water.png; sourceTree = "<group>"; };
+		4E89EC58170F732D0067B544 /* isometric_grass_and_water.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = isometric_grass_and_water.tmx; sourceTree = "<group>"; };
 		4ECAE99B1705076500AB8786 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = "../../../cocos2d-2.1rc0-x-2.1.2/cocos2dx/proj.ios/cocos2dx.xcodeproj"; sourceTree = "<group>"; };
 		4ECAE9A217050A2500AB8786 /* CocosDenshion.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocosDenshion.xcodeproj; path = "../../../cocos2d-2.1rc0-x-2.1.2/CocosDenshion/proj.ios/CocosDenshion.xcodeproj"; sourceTree = "<group>"; };
 		4ECAEA6817050CC600AB8786 /* libbox2d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbox2d.a; path = "../../../cocos2d-2.1rc0-x-2.1.2/cocos2dx/lib/linux/release/libbox2d.a"; sourceTree = "<group>"; };
 		4ECAEA6A17050E6900AB8786 /* IsoPrototype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IsoPrototype.cpp; sourceTree = "<group>"; };
 		4ECAEA6B17050E6900AB8786 /* IsoPrototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsoPrototype.h; sourceTree = "<group>"; };
-		4ECAEA751706407F00AB8786 /* isometric_grass_and_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = isometric_grass_and_water.png; path = ../proj.ios/isometric_grass_and_water.png; sourceTree = "<group>"; };
-		4ECAEA761706407F00AB8786 /* isometric_grass_and_water.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = isometric_grass_and_water.tmx; path = ../proj.ios/isometric_grass_and_water.tmx; sourceTree = "<group>"; };
 		4ECAEA7917064E8600AB8786 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		4ECAEA7A17064E8600AB8786 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		781C33B11547F06B00633F88 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -186,8 +186,8 @@
 		784521C214EBA449009D533B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4ECAEA751706407F00AB8786 /* isometric_grass_and_water.png */,
-				4ECAEA761706407F00AB8786 /* isometric_grass_and_water.tmx */,
+				4E89EC57170F732D0067B544 /* isometric_grass_and_water.png */,
+				4E89EC58170F732D0067B544 /* isometric_grass_and_water.tmx */,
 				1A1CF3671626CEFF00AFC938 /* ipad */,
 				1A1CF3681626CEFF00AFC938 /* ipadhd */,
 				15003FA215D2601D00B6775A /* iphone */,
@@ -321,8 +321,8 @@
 				D446FD7D161028F4000ADA7B /* Default-568h@2x.png in Resources */,
 				1A1CF3691626CEFF00AFC938 /* ipad in Resources */,
 				1A1CF36A1626CEFF00AFC938 /* ipadhd in Resources */,
-				4ECAEA771706407F00AB8786 /* isometric_grass_and_water.png in Resources */,
-				4ECAEA781706407F00AB8786 /* isometric_grass_and_water.tmx in Resources */,
+				4E89EC59170F732D0067B544 /* isometric_grass_and_water.png in Resources */,
+				4E89EC5A170F732D0067B544 /* isometric_grass_and_water.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
