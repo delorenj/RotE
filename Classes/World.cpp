@@ -22,8 +22,10 @@ World::World() {
 								pMap->getTileSize().width*getWorldSize().width, 
 								pMap->getTileSize().height*getWorldSize().height);
 
-	scrollAction = CCFollow::create(pViewport, worldBoundary);
-	runAction(scrollAction);	
+	elapsedTime = 0;
+	scheduleUpdate();
+	//scrollAction = CCFollow::create(pViewport, worldBoundary);
+	//runAction(scrollAction);	
 }
 
 World::~World() {
@@ -40,14 +42,18 @@ CCSize World::getWorldSize() {
     return pMap->getMapSize();
 }
 
-void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
+void World::update(float dt) {
+	elapsedTime += dt;	
+}
 
+void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch) {
-			CCMoveTo* move = CCMoveTo::create(1.0f, touchToPoint(touch));
-			CCEaseOut* ease = CCEaseOut::create(move, 2);
-			pViewport->runAction(ease);
+			prevTouchTime = elapsedTime;
+			oldPos = pMap->getPosition();
+			newPos = oldPos;
+			touchOffset = ccpSub(oldPos,touchToPoint(touch));			
         }
     }
 }
@@ -56,10 +62,21 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch && touchOffset.x && touchOffset.y) {
+			oldPos = pMap->getPosition();
+			newPos = ccpAdd(this->touchToPoint(touch), this->touchOffset);
+			pMap->setPosition(newPos);			
         }
     }
 }
 
 void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
-	CCLOG("Viewport Position: (%f, %f)", pViewport->getPositionX(), pViewport->getPositionY());
+	float denom = (elapsedTime - prevTouchTime);
+	denom = denom==0 ? 0.0001 : denom;
+	float mag = ccpDistance(oldPos, newPos) / denom;
+	CCLOG("Mag = %f", mag);
+	CCMoveTo* move = CCMoveTo::create(1.0f, ccpMult(newPos, clampf(mag,0,30)));
+	CCEaseOut* ease = CCEaseOut::create(move, 2);
+	pMap->runAction(ease);
+
+
 }
