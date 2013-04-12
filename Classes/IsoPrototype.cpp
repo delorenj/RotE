@@ -19,6 +19,7 @@ CCScene* IsoPrototype::scene()
     CCScene *scene = CCScene::create();
     IsoPrototype *layer = IsoPrototype::create();
     scene->addChild(layer);
+
     return scene;
 }
 
@@ -32,7 +33,7 @@ bool IsoPrototype::init()
     
 //    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 //    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-
+    CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, 0);
     CCLayerColor* color = new CCLayerColor();
     color->initWithColor(ccc4(64,64,64,255));
     addChild(color, -1);

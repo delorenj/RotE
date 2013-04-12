@@ -37,13 +37,19 @@ World::World() {
     fjDef.bodyB = pMapFrictionBody;
     
     pWorld->CreateJoint(&fjDef);
-    
+
 	worldBoundary = CCRectMake(	0,
 								0,
 								pMap->getTileSize().width*getWorldSize().width, 
 								pMap->getTileSize().height*getWorldSize().height);
 
 	elapsedTime = 0;
+    
+    // Zero out all touch indicies
+    for(int i=0; i<MAX_TOUCHES; i++) {
+        touchMap[i] = NULL;
+    }
+    
 	scheduleUpdate();
 }
 
@@ -78,10 +84,13 @@ void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch) {
+            if(touch->getID() >= MAX_TOUCHES) return;
+            touchMap[touch->getID()] = touch;
             b2Vec2 pos = pBody->GetPosition();
 			touchOffset = ccpSub(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO),touchToPoint(touch));
         }
     }
+    CCLOG("%d", numTouches());
 }
 
 void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
@@ -99,14 +108,18 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
 }
 
 void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
-    for(auto it = touches->begin(); it != touches->end(); it++) {
+    int i=0;
+    for(auto it = touches->begin(); it != touches->end(); it++, i++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch && touchOffset.x && touchOffset.y) {
+            if(touch->getID() >= MAX_TOUCHES) return;
+            touchMap[touch->getID()] = NULL;
             b2Vec2 linearVelocity = b2Vec2(lastPos - pBody->GetPosition());
             linearVelocity *= linearVelocity.Normalize() * -1 * 15;
             pBody->SetLinearVelocity(linearVelocity);
         }
     }
+    CCLOG("%d", numTouches());
     
 //	float denom = (elapsedTime - prevTouchTime);
 //	denom = denom==0 ? 0.0001 : denom;
@@ -123,4 +136,12 @@ void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
 //    direction = ccpMult(direction, clampf(mag, 0, 30));
 //    CCLOG("direction*clamp = %f,%f", direction.x, direction.y);
 
+}
+
+int World::numTouches() {
+    int count = 0;
+    for(int i=0; i<MAX_TOUCHES; i++) {
+        if(touchMap[i]) count++;
+    }
+    return count;
 }

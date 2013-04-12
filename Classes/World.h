@@ -19,6 +19,7 @@
 #endif
 
 #define PTM_RATIO 32.0
+#define MAX_TOUCHES 2
 
 using namespace cocos2d;
 
@@ -40,11 +41,14 @@ protected:
     b2Body* pMapFrictionBody;
     b2Vec2 lastPos;
     float lastTime;
+    CCTouch* touchMap[MAX_TOUCHES];
     b2FrictionJoint* pFrictionJoint;
     b2MassData mass;
     CCTMXTiledMap* pMap;
     CCPoint touchOffset;
 	CCRect worldBoundary;
 	float elapsedTime;
+    
+    int numTouches();
 };
 #endif /* defined(__RotE__World__) */
