@@ -26,7 +26,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // Set the design resolution
     pEGLView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionNoBorder);
-
 	CCSize frameSize = pEGLView->getFrameSize();
     
     vector<string> searchPath;

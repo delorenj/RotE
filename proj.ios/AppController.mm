@@ -50,7 +50,8 @@ static AppDelegate s_sharedApplication;
                                                                                  sharegroup:nil
                                                                           multiSampling:NO
                                                                     numberOfSamples:0];
-    
+    [__glView setMultipleTouchEnabled:YES];   // enable multi-touch here!! It's at about line 37
+
     // Use RootViewController manage EAGLView 
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     viewController.wantsFullScreenLayout = YES;
