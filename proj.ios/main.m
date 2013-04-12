@@ -1,15 +1,16 @@
 //
 //  main.m
-//  HelloLua
+//  iphone
 //
-//  Created by Walzer on 11-6-15.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Created by Walzer on 10-11-16.
+//  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 int main(int argc, char *argv[]) {
-    NSAutoreleasePool *pool = [NSAutoreleasePool new];
+    
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     int retVal = UIApplicationMain(argc, argv, nil, @"AppController");
     [pool release];
     return retVal;
