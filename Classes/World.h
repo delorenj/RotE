@@ -48,7 +48,9 @@ protected:
     CCPoint touchOffset;
 	CCRect worldBoundary;
 	float elapsedTime;
-    
+    float zoomLevel;
     int numTouches();
+    float initialTouchDistance;
+
 };
 #endif /* defined(__RotE__World__) */

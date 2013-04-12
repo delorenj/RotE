@@ -37,7 +37,7 @@ World::World() {
     fjDef.bodyB = pMapFrictionBody;
     
     pWorld->CreateJoint(&fjDef);
-
+    
 	worldBoundary = CCRectMake(	0,
 								0,
 								pMap->getTileSize().width*getWorldSize().width, 
@@ -81,13 +81,21 @@ void World::update(float dt) {
 }
 
 void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
+    if(numTouches() >= MAX_TOUCHES) return;
+    
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch) {
-            if(touch->getID() >= MAX_TOUCHES) return;
-            touchMap[touch->getID()] = touch;
-            b2Vec2 pos = pBody->GetPosition();
-			touchOffset = ccpSub(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO),touchToPoint(touch));
+            if(numTouches() == 0) {
+                touchMap[0] = touch;
+                b2Vec2 pos = pBody->GetPosition();
+                touchOffset = ccpSub(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO),touchToPoint(touch));
+            } else if(numTouches() == 1) {
+                touchMap[1] = touch;
+                CCPoint p1 = touchToPoint(touchMap[0]);
+                CCPoint p2 = touchToPoint(touchMap[1]);
+                initialTouchDistance = ccpDistance(p1, p2);
+            }
         }
     }
     CCLOG("%d", numTouches());
@@ -97,11 +105,21 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch && touchOffset.x && touchOffset.y) {
-            lastPos = pBody->GetPosition();
-			CCPoint newpos = ccpAdd(touchToPoint(touch), touchOffset);
-//            b2Vec2 linearVelocity = b2Vec2(newpos.x/PTM_RATIO, newpos.y/PTM_RATIO) - pBody->GetPosition();
-//            pBody->SetLinearVelocity(linearVelocity);
-            pBody->SetTransform(b2Vec2(newpos.x/PTM_RATIO, newpos.y/PTM_RATIO), pBody->GetAngle());
+
+            if(!touchMap[0]) return; //if released fingers in reverse order, return
+            if(touch == touchMap[0]) {   //if finger on screen is not the movey finger, return
+                lastPos = pBody->GetPosition();
+                CCPoint newpos = ccpAdd(touchToPoint(touch), touchOffset);
+                pBody->SetTransform(b2Vec2(newpos.x/PTM_RATIO, newpos.y/PTM_RATIO), pBody->GetAngle());
+            }
+            
+            if(numTouches() == 2) {
+                CCPoint p1 = touchToPoint(touchMap[0]);
+                CCPoint p2 = touchToPoint(touchMap[1]);
+                float currentTouchDistance = ccpDistance(p1, p2);
+                zoomLevel = initialTouchDistance - currentTouchDistance;
+                CCLOG("Zoom: %f", zoomLevel);
+            }
 
         }
     }
