@@ -11,6 +11,8 @@
 World::World() {
     this->setTouchEnabled(true);
     pMap = CCTMXTiledMap::create(TMX_FILE);
+    pMap->setAnchorPoint(ccp(0.5f, 0.5f));
+    zoomFactor = 1;
     addChild(pMap, 1);
     b2Vec2 grav = b2Vec2(0, 0);
     pWorld = new b2World(grav);
@@ -78,6 +80,7 @@ void World::update(float dt) {
                                  b->GetPosition().y * PTM_RATIO));
         }
     }
+    pMap->setScale(zoomFactor);
 }
 
 void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
@@ -95,6 +98,8 @@ void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
                 CCPoint p1 = touchToPoint(touchMap[0]);
                 CCPoint p2 = touchToPoint(touchMap[1]);
                 initialTouchDistance = ccpDistance(p1, p2);
+                initialZoomFactor = zoomFactor;
+                lastTouchDistance = initialTouchDistance;
             }
         }
     }
@@ -117,8 +122,11 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
                 CCPoint p1 = touchToPoint(touchMap[0]);
                 CCPoint p2 = touchToPoint(touchMap[1]);
                 float currentTouchDistance = ccpDistance(p1, p2);
-                zoomLevel = initialTouchDistance - currentTouchDistance;
-                CCLOG("Zoom: %f", zoomLevel);
+                zoomFactor = -(initialTouchDistance - currentTouchDistance)*0.015f + initialZoomFactor;
+                if(zoomFactor < 0.5f) {
+                    zoomFactor = 0.5f;
+                }
+                CCLOG("Zoom Factor: %f", zoomFactor);
             }
 
         }

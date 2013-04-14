@@ -18,6 +18,7 @@
 #define TMX_FILE "../Resources/isometric_grass_and_water.tmx"
 #endif
 
+#define CLAMP(x,y,z) MIN(MAX(x,y),z)
 #define PTM_RATIO 32.0
 #define MAX_TOUCHES 2
 
@@ -33,7 +34,7 @@ public:
     void ccTouchesBegan(CCSet* touches, CCEvent* event);
     void ccTouchesMoved(CCSet* touches, CCEvent* event);
     void ccTouchesEnded(CCSet* touches, CCEvent* event);
-	virtual void update(float dt);
+	virtual void update(float dt);    
     
 protected:
     b2World* pWorld;
@@ -48,9 +49,11 @@ protected:
     CCPoint touchOffset;
 	CCRect worldBoundary;
 	float elapsedTime;
-    float zoomLevel;
+    double zoomFactor;
+    double initialZoomFactor;
     int numTouches();
     float initialTouchDistance;
-
+    float lastTouchDistance;
+    
 };
 #endif /* defined(__RotE__World__) */
