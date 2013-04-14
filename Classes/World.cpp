@@ -103,7 +103,6 @@ void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
             }
         }
     }
-    CCLOG("%d", numTouches());
 }
 
 void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
@@ -126,7 +125,9 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
                 if(zoomFactor < 0.5f) {
                     zoomFactor = 0.5f;
                 }
-                CCLOG("Zoom Factor: %f", zoomFactor);
+                if(zoomFactor > 3.0f) {
+                    zoomFactor = 3.0f;
+                }
             }
 
         }
@@ -145,23 +146,6 @@ void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
             pBody->SetLinearVelocity(linearVelocity);
         }
     }
-    CCLOG("%d", numTouches());
-    
-//	float denom = (elapsedTime - prevTouchTime);
-//	denom = denom==0 ? 0.0001 : denom;
-//	float mag = ccpDistance(oldPos, newPos) / denom;
-//	CCLOG("Mag = %f", mag);
-//    
-//    CCPoint direction = ccpNormalize(ccp(oldPos.x - newPos.x, oldPos.y - newPos.y));
-//    CCPoint driftPos = ccpMult(direction, -40);
-//	CCMoveTo* move = CCMoveTo::create(1.0f, driftPos);
-//	CCEaseOut* ease = CCEaseOut::create(move, 2);
-//	pMap->runAction(ease);
-//
-//    CCLOG("direction = %f,%f", direction.x, direction.y);
-//    direction = ccpMult(direction, clampf(mag, 0, 30));
-//    CCLOG("direction*clamp = %f,%f", direction.x, direction.y);
-
 }
 
 int World::numTouches() {
