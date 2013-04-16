@@ -10,14 +10,18 @@
 
 World::World() {
     this->setTouchEnabled(true);
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();    
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    CCLOG("(%f,%f)", origin.x + visibleSize.width/2, origin.y + visibleSize.height/2);
     pMap = CCTMXTiledMap::create(TMX_FILE);
+	pMap->setPosition(ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2));    
     pMap->setAnchorPoint(ccp(0.5f, 0.5f));
-    zoomFactor = 1;
+    zoomFactor = 2;
     addChild(pMap, 1);
     b2Vec2 grav = b2Vec2(0, 0);
     pWorld = new b2World(grav);
     b2BodyDef mapBodyDef;
-    mapBodyDef.position.Set(0.0, 0.0);
+    mapBodyDef.position.Set(pMap->getPositionX()/PTM_RATIO, pMap->getPositionY()/PTM_RATIO);
     mapBodyDef.type = b2_dynamicBody;
     mapBodyDef.userData = pMap;
     pBody = pWorld->CreateBody(&mapBodyDef);
