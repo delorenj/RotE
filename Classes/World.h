@@ -31,6 +31,8 @@ public:
 
     CCSize getWorldSize();
     CCPoint touchToPoint(CCTouch* touch);
+    CCPoint positionForTile(CCPoint p);
+    CCPoint tileForPosition(CCPoint p);
     void ccTouchesBegan(CCSet* touches, CCEvent* event);
     void ccTouchesMoved(CCSet* touches, CCEvent* event);
     void ccTouchesEnded(CCSet* touches, CCEvent* event);
@@ -41,6 +43,7 @@ protected:
     b2Body* pBody;
     b2Body* pMapFrictionBody;
     b2Vec2 lastPos;
+    CCTMXLayer* m_pMapLayer;
     float lastTime;
     CCTouch* touchMap[MAX_TOUCHES];
     b2FrictionJoint* pFrictionJoint;
@@ -54,6 +57,9 @@ protected:
     int numTouches();
     float initialTouchDistance;
     float lastTouchDistance;
+    CCSprite* m_pTestSprite;
+    
+    void updateTestSprite();
     
 };
 #endif /* defined(__RotE__World__) */

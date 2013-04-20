@@ -46,7 +46,7 @@ World::World() {
     
 	worldBoundary = CCRectMake(	0,
 								0,
-								pMap->getTileSize().width*getWorldSize().width, 
+								pMap->getTileSize().width*getWorldSize().width,
 								pMap->getTileSize().height*getWorldSize().height);
 
 	elapsedTime = 0;
@@ -56,6 +56,20 @@ World::World() {
         touchMap[i] = NULL;
     }
     
+    m_pTestSprite = CCSprite::create("Icon-72.png");
+
+    CCObject* object;
+    CCARRAY_FOREACH(pMap->getChildren(), object)
+    {
+        // is this map child a tile layer?
+        CCTMXLayer* layer = dynamic_cast<CCTMXLayer*>(object);
+        if( layer != NULL ) {
+            m_pMapLayer = layer;
+            
+        }
+    }
+
+    pMap->addChild(m_pTestSprite);
 	scheduleUpdate();
 }
 
@@ -73,6 +87,19 @@ CCSize World::getWorldSize() {
     return pMap->getMapSize();
 }
 
+CCPoint World::positionForTile(CCPoint p) {
+	p = ccpMult(p, pMap->getTileSize().width);
+	p.x += pMap->getTileSize().width / 2;
+	p.y = pMap->getContentSize().height - p.y;
+	p.y -= pMap->getTileSize().height / 2;
+	return p;
+}
+
+CCPoint World::tileForPosition(CCPoint p) {
+	int x = (int)(p.x / pMap->getTileSize().width);
+	int y = (int)(((pMap->getMapSize().height * pMap->getTileSize().width) - p.y) / pMap->getTileSize().width);
+	return ccp(x, y);
+}
 void World::update(float dt) {
 	elapsedTime += dt;
     
@@ -87,6 +114,10 @@ void World::update(float dt) {
     pMap->setScale(zoomFactor);
 }
 
+void World::updateTestSprite() {
+    
+};
+
 void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
     if(numTouches() >= MAX_TOUCHES) return;
     
@@ -97,6 +128,9 @@ void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
                 touchMap[0] = touch;
                 b2Vec2 pos = pBody->GetPosition();
                 touchOffset = ccpSub(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO),touchToPoint(touch));
+                CCLOG("Tile Coord: ", tileForPosition(touchToPoint(touch)).x, tileForPosition(touchToPoint(touch)).y);
+                      
+                m_pTestSprite->setPosition(positionForTile(tileForPosition(touchToPoint(touch))));
             } else if(numTouches() == 1) {
                 touchMap[1] = touch;
                 CCPoint p1 = touchToPoint(touchMap[0]);
@@ -104,7 +138,7 @@ void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
                 initialTouchDistance = ccpDistance(p1, p2);
                 initialZoomFactor = zoomFactor;
                 lastTouchDistance = initialTouchDistance;
-            }
+            }            
         }
     }
 }
