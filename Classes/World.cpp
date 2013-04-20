@@ -50,13 +50,13 @@ World::World() {
 								pMap->getTileSize().height*getWorldSize().height);
 
 	elapsedTime = 0;
-    
+    m_bMapMoved = 0;
     // Zero out all touch indicies
     for(int i=0; i<MAX_TOUCHES; i++) {
         touchMap[i] = NULL;
     }
     
-    m_pTestSprite = CCSprite::create("Icon-72.png");
+    m_pTestSprite = CCSprite::create("../Resources/dog.png");
 
     CCObject* object;
     CCARRAY_FOREACH(pMap->getChildren(), object)
@@ -92,12 +92,21 @@ CCPoint World::positionForTile(CCPoint p) {
 	p.x += pMap->getTileSize().width / 2;
 	p.y = pMap->getContentSize().height - p.y;
 	p.y -= pMap->getTileSize().height / 2;
+
+	CCLOG("getTileSize()   : (%f, %f)", pMap->getTileSize().width, pMap->getTileSize().height);
+	CCLOG("getContentSize(): (%f, %f)", pMap->getContentSize().width, pMap->getContentSize().height);
+	CCLOG("point           : (%f, %f)", p.x, p.y);
 	return p;
 }
 
 CCPoint World::tileForPosition(CCPoint p) {
 	int x = (int)(p.x / pMap->getTileSize().width);
 	int y = (int)(((pMap->getMapSize().height * pMap->getTileSize().width) - p.y) / pMap->getTileSize().width);
+
+	CCLOG("getTileSize()   : (%f, %f)", pMap->getTileSize().width, pMap->getTileSize().height);
+	CCLOG("getContentSize(): (%f, %f)", pMap->getContentSize().width, pMap->getContentSize().height);
+	CCLOG("point           : (%f, %f)", p.x, p.y);
+	CCLOG("tile           : (%d, %d)", x, y);
 	return ccp(x, y);
 }
 void World::update(float dt) {
@@ -124,14 +133,17 @@ void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch) {
-            if(numTouches() == 0) {
+            if(touches->count() == 1) {
                 touchMap[0] = touch;
                 b2Vec2 pos = pBody->GetPosition();
                 touchOffset = ccpSub(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO),touchToPoint(touch));
-                CCLOG("Tile Coord: ", tileForPosition(touchToPoint(touch)).x, tileForPosition(touchToPoint(touch)).y);
+				//CCPoint coord = pMap->coordinatesAtPosition(touchToPoint(touch));
+				CCPoint coord = tileForPosition(touchToPoint(touch));
+				//CCPoint coord = positionForTile(ccp(0,0));
+                //CCLOG("Tile Coord: (%d, %d)", coord.x, coord.y);
                       
-                m_pTestSprite->setPosition(positionForTile(tileForPosition(touchToPoint(touch))));
-            } else if(numTouches() == 1) {
+                //m_pTestSprite->setPosition(ccp(10,10));
+            } else if(touches->count() == 1) {
                 touchMap[1] = touch;
                 CCPoint p1 = touchToPoint(touchMap[0]);
                 CCPoint p2 = touchToPoint(touchMap[1]);
@@ -147,7 +159,7 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch && touchOffset.x && touchOffset.y) {
-
+			m_bMapMoved = true;
             if(!touchMap[0]) return; //if released fingers in reverse order, return
             if(touch == touchMap[0]) {   //if finger on screen is not the movey finger, return
                 lastPos = pBody->GetPosition();
@@ -176,7 +188,7 @@ void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
     int i=0;
     for(auto it = touches->begin(); it != touches->end(); it++, i++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
-        if(touch && touchOffset.x && touchOffset.y) {
+        if(touch && touchOffset.x && touchOffset.y && m_bMapMoved) {
             if(touch->getID() >= MAX_TOUCHES) return;
             touchMap[touch->getID()] = NULL;
             b2Vec2 linearVelocity = b2Vec2(lastPos - pBody->GetPosition());
@@ -184,12 +196,13 @@ void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
             pBody->SetLinearVelocity(linearVelocity);
         }
     }
+	m_bMapMoved = false;
 }
 
 int World::numTouches() {
     int count = 0;
     for(int i=0; i<MAX_TOUCHES; i++) {
-        if(touchMap[i]) count++;
+        if(touchMap[i] != NULL) count++;
     }
     return count;
 }

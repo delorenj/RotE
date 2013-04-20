@@ -124,6 +124,7 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\IsoPrototype.cpp" />
+    <ClCompile Include="..\Classes\TileMap.cpp" />
     <ClCompile Include="..\Classes\World.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -132,6 +133,7 @@
     <ClInclude Include="..\Classes\AppMacros.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\IsoPrototype.h" />
+    <ClInclude Include="..\Classes\TileMap.h" />
     <ClInclude Include="..\Classes\World.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

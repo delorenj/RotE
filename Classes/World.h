@@ -57,6 +57,7 @@ protected:
     int numTouches();
     float initialTouchDistance;
     float lastTouchDistance;
+	bool m_bMapMoved;
     CCSprite* m_pTestSprite;
     
     void updateTestSprite();
