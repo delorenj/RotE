@@ -53,16 +53,13 @@ World::World() {
     m_bMapMoved = 0;
     
     m_pTestSprite = CCSprite::create("dog.png");
-
-    CCObject* object;
-    CCARRAY_FOREACH(pMap->getChildren(), object)
-    {
-        // is this map child a tile layer?
-        CCTMXLayer* layer = dynamic_cast<CCTMXLayer*>(object);
-        if( layer != NULL ) {
-            m_pMapLayer = layer;
-            
-        }
+    m_pMapLayer = pMap->layerNamed("ground");
+    
+    CCObject* tile;
+    CCArray* tiles = m_pMapLayer->getChildren();
+    CCARRAY_FOREACH(tiles, tile) {
+        CCSpriteBatchNode* t = dynamic_cast<CCSpriteBatchNode*>(tile);
+        CCLOG("POS: (%f, %f)", t->getPositionX(), t->getPositionY());
     }
 
     pMap->addChild(m_pTestSprite);
