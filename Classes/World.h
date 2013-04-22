@@ -11,6 +11,7 @@
 
 #include <cocos2d.h>
 #include <Box2D/Box2D.h>
+#include <hash_map.h>
 
 #ifdef __APPLE__
 #define TMX_FILE "isometric_grass_and_water.tmx"
@@ -45,7 +46,6 @@ protected:
     b2Vec2 lastPos;
     CCTMXLayer* m_pMapLayer;
     float lastTime;
-    CCTouch* touchMap[MAX_TOUCHES];
     b2FrictionJoint* pFrictionJoint;
     b2MassData mass;
     CCTMXTiledMap* pMap;
@@ -54,12 +54,11 @@ protected:
 	float elapsedTime;
     double zoomFactor;
     double initialZoomFactor;
-    int numTouches();
     float initialTouchDistance;
     float lastTouchDistance;
 	bool m_bMapMoved;
     CCSprite* m_pTestSprite;
-    
+    map<int,CCTouch*> touchMap;
     void updateTestSprite();
     
 };

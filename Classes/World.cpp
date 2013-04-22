@@ -51,12 +51,8 @@ World::World() {
 
 	elapsedTime = 0;
     m_bMapMoved = 0;
-    // Zero out all touch indicies
-    for(int i=0; i<MAX_TOUCHES; i++) {
-        touchMap[i] = NULL;
-    }
     
-    m_pTestSprite = CCSprite::create("../Resources/dog.png");
+    m_pTestSprite = CCSprite::create("dog.png");
 
     CCObject* object;
     CCARRAY_FOREACH(pMap->getChildren(), object)
@@ -128,23 +124,24 @@ void World::updateTestSprite() {
 };
 
 void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
-    if(numTouches() >= MAX_TOUCHES) return;
+//    if(touchMap.count() >= MAX_TOUCHES) return;
     
     for(auto it = touches->begin(); it != touches->end(); it++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
         if(touch) {
-            if(touches->count() == 1) {
-                touchMap[0] = touch;
+            touchMap[touch->getID()] = touch;
+            CCLOG("Touch Started: %d, id=%d", touchMap.size(), touch->getID());
+            if(touchMap.size() == 1) {
                 b2Vec2 pos = pBody->GetPosition();
                 touchOffset = ccpSub(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO),touchToPoint(touch));
 				//CCPoint coord = pMap->coordinatesAtPosition(touchToPoint(touch));
-				CCPoint coord = tileForPosition(touchToPoint(touch));
+				//CCPoint coord = tileForPosition(touchToPoint(touch));
 				//CCPoint coord = positionForTile(ccp(0,0));
                 //CCLOG("Tile Coord: (%d, %d)", coord.x, coord.y);
                       
                 //m_pTestSprite->setPosition(ccp(10,10));
-            } else if(touches->count() == 1) {
-                touchMap[1] = touch;
+            } else if(touchMap.size() == 2) {
+                touchMap[touch->getID()] = touch;
                 CCPoint p1 = touchToPoint(touchMap[0]);
                 CCPoint p2 = touchToPoint(touchMap[1]);
                 initialTouchDistance = ccpDistance(p1, p2);
@@ -167,7 +164,7 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
                 pBody->SetTransform(b2Vec2(newpos.x/PTM_RATIO, newpos.y/PTM_RATIO), pBody->GetAngle());
             }
             
-            if(numTouches() == 2) {
+            if(touchMap.size() == 2) {
                 CCPoint p1 = touchToPoint(touchMap[0]);
                 CCPoint p2 = touchToPoint(touchMap[1]);
                 float currentTouchDistance = ccpDistance(p1, p2);
@@ -188,21 +185,17 @@ void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
     int i=0;
     for(auto it = touches->begin(); it != touches->end(); it++, i++) {
         CCTouch* touch = dynamic_cast<CCTouch*>(*it);
+        if(touchMap.size() >= 2 && touch->getID() == 0) {
+            touchMap.clear();
+            return;
+        }
+        touchMap.erase(touch->getID());
+        CCLOG("Touches: %d, id=%d", touchMap.size(), touch->getID());
         if(touch && touchOffset.x && touchOffset.y && m_bMapMoved) {
-            if(touch->getID() >= MAX_TOUCHES) return;
-            touchMap[touch->getID()] = NULL;
             b2Vec2 linearVelocity = b2Vec2(lastPos - pBody->GetPosition());
             linearVelocity *= linearVelocity.Normalize() * -1 * 15;
             pBody->SetLinearVelocity(linearVelocity);
         }
     }
 	m_bMapMoved = false;
-}
-
-int World::numTouches() {
-    int count = 0;
-    for(int i=0; i<MAX_TOUCHES; i++) {
-        if(touchMap[i] != NULL) count++;
-    }
-    return count;
 }

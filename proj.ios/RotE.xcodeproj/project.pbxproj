@@ -65,6 +65,7 @@
 		4ECAEA6717050C2100AB8786 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF365AA712A103F70050DCF4 /* AppController.mm */; };
 		4ECAEA6C17050E6900AB8786 /* IsoPrototype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAEA6A17050E6900AB8786 /* IsoPrototype.cpp */; };
 		4ECAEA7B17064E8600AB8786 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAEA7917064E8600AB8786 /* World.cpp */; };
+		4EEAD9F417235A7100141CA2 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEAD9F317235A7100141CA2 /* dog.png */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
 		BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492B6912891AC600A09262 /* libz.dylib */; };
@@ -207,6 +208,7 @@
 		4ECAEA6B17050E6900AB8786 /* IsoPrototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsoPrototype.h; sourceTree = "<group>"; };
 		4ECAEA7917064E8600AB8786 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		4ECAEA7A17064E8600AB8786 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		4EEAD9F317235A7100141CA2 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		781C33B11547F06B00633F88 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		781C33B31547F06B00633F88 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		781C33B51547F06B00633F88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -263,6 +265,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				4EEAD9F317235A7100141CA2 /* dog.png */,
 				4ECAEA6617050B1700AB8786 /* libs */,
 				BF23D4E2143315EB00657E08 /* Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -610,6 +613,7 @@
 				1A1CF36A1626CEFF00AFC938 /* ipadhd in Resources */,
 				4E89EC59170F732D0067B544 /* isometric_grass_and_water.png in Resources */,
 				4E89EC5A170F732D0067B544 /* isometric_grass_and_water.tmx in Resources */,
+				4EEAD9F417235A7100141CA2 /* dog.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
