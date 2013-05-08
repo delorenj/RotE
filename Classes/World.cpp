@@ -165,12 +165,6 @@ void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
             if(touchMap.size() == 1) {
                 b2Vec2 pos = pBody->GetPosition();
                 touchOffset = ccpSub(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO),touchToPoint(touch));
-				//CCPoint coord = pMap->coordinatesAtPosition(touchToPoint(touch));
-				//CCPoint coord = tileForPosition(touchToPoint(touch));
-				//CCPoint coord = positionForTile(ccp(0,0));
-                //CCLOG("Tile Coord: (%d, %d)", coord.x, coord.y);
-                      
-                //m_pTestSprite->setPosition(ccp(10,10));
             } else if(touchMap.size() == 2) {
                 touchMap[touch->getID()] = touch;
                 CCPoint p1 = touchToPoint(touchMap[0]);
@@ -193,8 +187,6 @@ void World::ccTouchesMoved(CCSet* touches, CCEvent* event) {
                 lastPos = pBody->GetPosition();
                 CCPoint newpos = ccpAdd(touchToPoint(touch), touchOffset);
                 pBody->SetTransform(b2Vec2(newpos.x/PTM_RATIO, newpos.y/PTM_RATIO), pBody->GetAngle());
-//                CCPoint p = positionForTile(ccp(0,0));
-//                CCLOG("position for tile(0,0): ", p.x, p.y);
             }
             
             if(touchMap.size() == 2) {
@@ -234,11 +226,13 @@ void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
         
         if(touch && !m_bMapMoved) {
 #pragma mark select_tile
-            CCLOG("SELECT TILE: (ahhh can't figure this out!");
-#if DEBUG_MAP
-            CCSprite* tile = m_pMapLayer->tileAt(CCPoint(0, 0));
-            CCPoint tilePosWorld = pMap->convertToWorldSpace(tile->getPosition());
             CCPoint touchPosInTileSpace = touchToTile(touch);
+            CCSprite* tile = m_pMapLayer->tileAt(touchPosInTileSpace);
+            m_pTestSprite->setPosition(tile->getPosition());
+#if DEBUG_MAP
+
+            CCPoint tilePosWorld = pMap->convertToWorldSpace(tile->getPosition());
+            
             CCLOG("------- PMAP DEBUG INFO -------");
             CCLOG("pMap position: (%f, %f)", pMap->getPositionX(), pMap->getPositionY());
             CCLOG("pMap scale: %f", pMap->getScaleX());
