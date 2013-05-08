@@ -60,8 +60,6 @@
 		4ECAEA6717050C2100AB8786 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF365AA712A103F70050DCF4 /* AppController.mm */; };
 		4ECAEA6C17050E6900AB8786 /* IsoPrototype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAEA6A17050E6900AB8786 /* IsoPrototype.cpp */; };
 		4ECAEA7B17064E8600AB8786 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAEA7917064E8600AB8786 /* World.cpp */; };
-		4EEAD9F91725749800141CA2 /* isometric_grass_and_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E89EC57170F732D0067B544 /* isometric_grass_and_water.png */; };
-		4EEAD9FA1725749900141CA2 /* isometric_grass_and_water.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 4E89EC58170F732D0067B544 /* isometric_grass_and_water.tmx */; };
 		4EEADA1F172577E500141CA2 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA16172577E400141CA2 /* dog.png */; };
 		4EEADA20172577E500141CA2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA18172577E400141CA2 /* Default-568h@2x.png */; };
 		4EEADA21172577E500141CA2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA19172577E400141CA2 /* Default.png */; };
@@ -70,6 +68,9 @@
 		4EEADA24172577E500141CA2 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA1C172577E400141CA2 /* Icon-72.png */; };
 		4EEADA25172577E500141CA2 /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA1D172577E500141CA2 /* Icon-114.png */; };
 		4EEADA26172577E500141CA2 /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA1E172577E500141CA2 /* Icon-144.png */; };
+		4EEADA281725F3AD00141CA2 /* isometric_grass_and_water_test.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA271725F3AD00141CA2 /* isometric_grass_and_water_test.tmx */; };
+		4EEADA2E173478F300141CA2 /* test-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA2D173478F300141CA2 /* test-tile.png */; };
+		4EEADA3817347A7A00141CA2 /* test_map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 4EEADA3717347A7A00141CA2 /* test_map_01.tmx */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
 		BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492B6912891AC600A09262 /* libz.dylib */; };
@@ -206,7 +207,6 @@
 		4ECAEA7917064E8600AB8786 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		4ECAEA7A17064E8600AB8786 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		4EEADA16172577E400141CA2 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
-		4EEADA17172577E400141CA2 /* isometric_grass_and_water.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = isometric_grass_and_water.tmx; sourceTree = "<group>"; };
 		4EEADA18172577E400141CA2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4EEADA19172577E400141CA2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4EEADA1A172577E400141CA2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -214,6 +214,9 @@
 		4EEADA1C172577E400141CA2 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		4EEADA1D172577E500141CA2 /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-114.png"; sourceTree = "<group>"; };
 		4EEADA1E172577E500141CA2 /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
+		4EEADA271725F3AD00141CA2 /* isometric_grass_and_water_test.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = isometric_grass_and_water_test.tmx; sourceTree = "<group>"; };
+		4EEADA2D173478F300141CA2 /* test-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-tile.png"; sourceTree = "<group>"; };
+		4EEADA3717347A7A00141CA2 /* test_map_01.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test_map_01.tmx; sourceTree = "<group>"; };
 		781C33B11547F06B00633F88 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		781C33B31547F06B00633F88 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		781C33B51547F06B00633F88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -473,8 +476,10 @@
 		784521C214EBA449009D533B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4EEADA3717347A7A00141CA2 /* test_map_01.tmx */,
+				4EEADA2D173478F300141CA2 /* test-tile.png */,
+				4EEADA271725F3AD00141CA2 /* isometric_grass_and_water_test.tmx */,
 				4EEADA16172577E400141CA2 /* dog.png */,
-				4EEADA17172577E400141CA2 /* isometric_grass_and_water.tmx */,
 				4EEADA18172577E400141CA2 /* Default-568h@2x.png */,
 				4EEADA19172577E400141CA2 /* Default.png */,
 				4EEADA1A172577E400141CA2 /* Default@2x.png */,
@@ -600,8 +605,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EEADA3817347A7A00141CA2 /* test_map_01.tmx in Resources */,
+				4EEADA2E173478F300141CA2 /* test-tile.png in Resources */,
+				4EEADA281725F3AD00141CA2 /* isometric_grass_and_water_test.tmx in Resources */,
 				4EEADA1F172577E500141CA2 /* dog.png in Resources */,
-				4EEAD9FA1725749900141CA2 /* isometric_grass_and_water.tmx in Resources */,
 				4EEADA20172577E500141CA2 /* Default-568h@2x.png in Resources */,
 				4EEADA21172577E500141CA2 /* Default.png in Resources */,
 				4EEADA22172577E500141CA2 /* Default@2x.png in Resources */,
@@ -609,7 +616,6 @@
 				4EEADA24172577E500141CA2 /* Icon-72.png in Resources */,
 				4EEADA25172577E500141CA2 /* Icon-114.png in Resources */,
 				4EEADA26172577E500141CA2 /* Icon-144.png in Resources */,
-				4EEAD9F91725749800141CA2 /* isometric_grass_and_water.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

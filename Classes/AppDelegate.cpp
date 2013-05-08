@@ -69,6 +69,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     CCScene *pScene = IsoPrototype::scene();
 
+    // set 2D for isometric view
+    pDirector->setProjection(kCCDirectorProjection2D);
+    
     // run
     pDirector->runWithScene(pScene);
 
