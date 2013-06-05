@@ -68,7 +68,6 @@ protected:
 	bool m_bMapMoved;
     CCSprite* m_pTestSprite;
     map<int,CCTouch*> touchMap;
-    void updateTestSprite();
     
 };
 #endif /* defined(__RotE__World__) */

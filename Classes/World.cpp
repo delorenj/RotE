@@ -54,13 +54,11 @@ World::World() {
 	elapsedTime = 0;
     m_bMapMoved = 0;
     
-    m_pTestSprite = CCSprite::create("dog.png");
+    //Initialize map & map layers
     m_pMapLayer = pMap->layerNamed("ground");
-    
     CCArray * pChildrenArray = pMap->getChildren();
     CCSpriteBatchNode* child = NULL;
     CCObject* pObject = NULL;
-    
     //Set layers to antialias mode
     CCARRAY_FOREACH(pChildrenArray, pObject)
     {
@@ -70,8 +68,10 @@ World::World() {
         child->getTexture()->setAntiAliasTexParameters();
     }
 
-    pMap->addChild(m_pTestSprite);
-        
+    //Load game objects into map layer (if any)
+    
+    //Init NPCs (if any)
+    
 	scheduleUpdate();
 }
 
@@ -148,9 +148,6 @@ void World::update(float dt) {
     pMap->setScale(zoomFactor);
 }
 
-void World::updateTestSprite() {
-    
-};
 
 void World::ccTouchesBegan(CCSet *touches, CCEvent* event) {
 //    if(touchMap.count() >= MAX_TOUCHES) return;
@@ -228,7 +225,6 @@ void World::ccTouchesEnded(CCSet* touches, CCEvent* event) {
 #pragma mark select_tile
             CCPoint touchPosInTileSpace = touchToTile(touch);
             CCSprite* tile = m_pMapLayer->tileAt(touchPosInTileSpace);
-            m_pTestSprite->setPosition(tile->getPosition());
 #if DEBUG_MAP
 
             CCPoint tilePosWorld = pMap->convertToWorldSpace(tile->getPosition());

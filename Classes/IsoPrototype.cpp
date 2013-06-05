@@ -13,6 +13,8 @@
 USING_NS_CC;
 
 #define WORLD 1
+#define UI 2
+#define PLAYER 3
 
 CCScene* IsoPrototype::scene()
 {
@@ -40,6 +42,11 @@ bool IsoPrototype::init()
     
     World* pWorld = new World();
     addChild(pWorld, 0, WORLD);
+  
+    Player* pPlayer = new Player();
+    addChild(pPlayer, 0, PLAYER);
+//    UserInterface* pUI = new UserInterface();
+//    addChild(pUI, 0, UI);
     
     return true;
 }

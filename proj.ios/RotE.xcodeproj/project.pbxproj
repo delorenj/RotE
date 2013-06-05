@@ -55,6 +55,7 @@
 		4EACD25B171621BC00293564 /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EACD1B1171621BC00293564 /* b2WeldJoint.cpp */; };
 		4EACD25C171621BC00293564 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EACD1B3171621BC00293564 /* b2WheelJoint.cpp */; };
 		4EACD2C6171621BC00293564 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EACD22E171621BC00293564 /* b2Rope.cpp */; };
+		4EC0A772175EB5D2009DA68E /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0A770175EB5D2009DA68E /* Player.cpp */; };
 		4ECAE9A1170509EE00AB8786 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ECAE9A01705076600AB8786 /* libcocos2dx.a */; };
 		4ECAE9A817050A5100AB8786 /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ECAE9A717050A2500AB8786 /* libCocosDenshion.a */; };
 		4ECAEA6717050C2100AB8786 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF365AA712A103F70050DCF4 /* AppController.mm */; };
@@ -200,6 +201,8 @@
 		4EACD1B4171621BC00293564 /* b2WheelJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WheelJoint.h; sourceTree = "<group>"; };
 		4EACD22E171621BC00293564 /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Rope.cpp; sourceTree = "<group>"; };
 		4EACD22F171621BC00293564 /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
+		4EC0A770175EB5D2009DA68E /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		4EC0A771175EB5D2009DA68E /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		4ECAE99B1705076500AB8786 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = "../../../cocos2d-2.1rc0-x-2.1.2/cocos2dx/proj.ios/cocos2dx.xcodeproj"; sourceTree = "<group>"; };
 		4ECAE9A217050A2500AB8786 /* CocosDenshion.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocosDenshion.xcodeproj; path = "../../../cocos2d-2.1rc0-x-2.1.2/CocosDenshion/proj.ios/CocosDenshion.xcodeproj"; sourceTree = "<group>"; };
 		4ECAEA6A17050E6900AB8786 /* IsoPrototype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IsoPrototype.cpp; sourceTree = "<group>"; };
@@ -509,6 +512,8 @@
 				4ECAEA6B17050E6900AB8786 /* IsoPrototype.h */,
 				4ECAEA7917064E8600AB8786 /* World.cpp */,
 				4ECAEA7A17064E8600AB8786 /* World.h */,
+				4EC0A770175EB5D2009DA68E /* Player.cpp */,
+				4EC0A771175EB5D2009DA68E /* Player.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -678,6 +683,7 @@
 				4EACD25B171621BC00293564 /* b2WeldJoint.cpp in Sources */,
 				4EACD25C171621BC00293564 /* b2WheelJoint.cpp in Sources */,
 				4EACD2C6171621BC00293564 /* b2Rope.cpp in Sources */,
+				4EC0A772175EB5D2009DA68E /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
